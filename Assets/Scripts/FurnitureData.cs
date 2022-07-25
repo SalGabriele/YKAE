@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum FurnitureType {Chair, Table, Plate, Picture1, Picture2}
+public enum FurnitureType { Chair, Table, Plate, Picture1, Picture2 }
 
 [Serializable]
 public class FurnitureData

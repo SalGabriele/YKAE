@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Furniture : MonoBehaviour
@@ -18,7 +16,7 @@ public class Furniture : MonoBehaviour
     public void HideCanvas()
     {
         GameObject[] furnitureCanvas = GameObject.FindGameObjectsWithTag("FurnitureCanvas");
-        foreach(GameObject canvas in furnitureCanvas)
+        foreach (GameObject canvas in furnitureCanvas)
         {
             canvas.SetActive(false);
         }

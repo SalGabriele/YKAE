@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RoomManager: MonoBehaviour
+public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject chair;
     [SerializeField] GameObject table;
     [SerializeField] GameObject plate;
     [SerializeField] GameObject picture1;
     [SerializeField] GameObject picture2;
-    
-    //singleton unity
-    public static RoomData roomData = new RoomData();
+
+    public static RoomData roomData = new();
     private static bool reloading;
     private static string roomDataJson;
 
@@ -60,19 +57,17 @@ public class RoomManager: MonoBehaviour
                         furniture = picture2;
                         break;
                 }
-                GameObject.FindObjectOfType<FurnitureCreator>().InstantiateFurnitureJson(furniture, fd.position, fd.rotation, fd.color, i);
-
+                FindObjectOfType<FurnitureCreator>().InstantiateFurnitureJson(furniture, fd.position, fd.rotation, fd.color, i);
             }
             reloading = false;
         }
     }
 
-
     public static int AddFurnitureToList(FurnitureType furnitureType, Vector3 position, Quaternion rotation, Color color, int index)
     {
         if (index == -1)
         {
-            FurnitureData furnitureData = new FurnitureData(furnitureType, position, rotation, color);
+            FurnitureData furnitureData = new(furnitureType, position, rotation, color);
             roomData.furnitureData.Add(furnitureData);
             return roomData.furnitureData.Count - 1;
         }
@@ -83,7 +78,6 @@ public class RoomManager: MonoBehaviour
             roomData.furnitureData[index].color = color;
             return index;
         }
-        
     }
 
     public static void FurnitureRemoved(int index)

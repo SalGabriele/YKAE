@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FurnitureController : MonoBehaviour
@@ -22,14 +19,12 @@ public class FurnitureController : MonoBehaviour
         {
             return;
         }
-      
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 100))
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100))
         {
             transform.position = hit.point;
-            if ((tag == "Picture1" || tag == "Picture2") && hit.transform.tag=="Wall")
+            if ((CompareTag("Picture1") || CompareTag("Picture2")) && hit.transform.CompareTag("Wall"))
             {
                 if (hit.transform.GetComponent<WallData>().leftWall)
                 {
@@ -42,18 +37,18 @@ public class FurnitureController : MonoBehaviour
                     transform.Translate(0.02f, 0, 0);
                     transform.GetChild(0).eulerAngles = new Vector3(-90, 90, 0);
                     transform.GetChild(1).eulerAngles = new Vector3(0, 270, 0);
-                    transform.GetChild(1).position = new Vector3(transform.GetChild(1).position.x+0.01f, transform.GetChild(1).position.y, transform.GetChild(1).position.z);
+                    transform.GetChild(1).position = new Vector3(transform.GetChild(1).position.x + 0.01f, transform.GetChild(1).position.y, transform.GetChild(1).position.z);
                 }
             }
-            
+
             if (Input.GetMouseButtonDown(0))
             {
-                if(canBeSnapped(hit.transform.tag, transform.tag))
+                if (CanBeSnapped(hit.transform.tag, transform.tag))
                 {
                     snapped = true;
                     FindObjectOfType<Furniture>().Holding = false;
                     GetComponentInChildren<Collider>().enabled = true;
-                    if(hit.transform.tag!="Floor" && transform.tag == "Plate")
+                    if (!hit.transform.CompareTag("Floor") && transform.CompareTag("Plate"))
                     {
                         transform.parent = hit.transform.parent;
                     }
@@ -67,7 +62,7 @@ public class FurnitureController : MonoBehaviour
     public void MouseDown()
     {
         if (!FindObjectOfType<Furniture>().Holding)
-         {
+        {
             transform.GetComponentInParent<Furniture>().HideCanvas();
             canvasIsVisible = !canvasIsVisible;
             foreach (Transform child in transform)
@@ -78,12 +73,12 @@ public class FurnitureController : MonoBehaviour
                 }
             }
         }
-     
+
     }
 
     public void MoveFurniture()
     {
-        if (transform.parent.tag != "Furniture")
+        if (!transform.parent.CompareTag("Furniture"))
         {
             transform.parent = GameObject.FindGameObjectWithTag("Furniture").transform;
         }
@@ -104,7 +99,6 @@ public class FurnitureController : MonoBehaviour
     {
         transform.GetComponentInParent<Furniture>().HideCanvas();
         canvasIsVisible = false;
-        //GameObject.FindObjectOfType<UIController>().EnableColorPicker();
         ColorPicker.Create(material.color, "Chose the color", SetColor, ColorFinished);
     }
 
@@ -135,11 +129,11 @@ public class FurnitureController : MonoBehaviour
         throw new System.ComponentModel.InvalidEnumArgumentException();
     }
 
-    private bool canBeSnapped(string placedObjectTag, string objectToSnapTag)
+    private bool CanBeSnapped(string placedObjectTag, string objectToSnapTag)
     {
-        foreach(var snappingRule in snappingRules.snappingRulesList)
+        foreach (var snappingRule in snappingRules.snappingRulesList)
         {
-            if(snappingRule.placedObjectTag==placedObjectTag && snappingRule.objectToSnapTag == objectToSnapTag)
+            if (snappingRule.placedObjectTag == placedObjectTag && snappingRule.objectToSnapTag == objectToSnapTag)
             {
                 return snappingRule.canBeSnapped;
             }

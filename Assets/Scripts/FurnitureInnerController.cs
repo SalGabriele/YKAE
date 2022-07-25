@@ -12,7 +12,7 @@ public class FurnitureInnerController : MonoBehaviour
     public void RotateFurniture()
     {
         int currentRotation = Mathf.RoundToInt(transform.eulerAngles.y);
-        int newRotation=0;
+        int newRotation = 0;
         switch (currentRotation)
         {
             case 0:
