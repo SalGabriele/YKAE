@@ -2,6 +2,20 @@ using UnityEngine;
 
 public class Furniture : MonoBehaviour
 {
+    public static Furniture instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     private bool holding;
     public bool Holding
     {

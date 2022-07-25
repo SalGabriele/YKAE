@@ -521,7 +521,7 @@ PrefabInstance:
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 963194229}
+      objectReference: {fileID: 836922941}
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: InstantiateFurniture
@@ -536,7 +536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2091246785452236983, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_Name
-      value: pictureButton2
+      value: PictureButton2
       objectReference: {fileID: 0}
     - target: {fileID: 2091246785452236983, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_TagString
@@ -911,7 +911,7 @@ PrefabInstance:
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 963194229}
+      objectReference: {fileID: 836922941}
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: InstantiateFurniture
@@ -1201,6 +1201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 836922940}
   - component: {fileID: 836922939}
+  - component: {fileID: 836922941}
   m_Layer: 0
   m_Name: Furniture
   m_TagString: Furniture
@@ -1235,6 +1236,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &836922941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836922938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c309bf2e6117814f921964cc2a59ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &961488874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1328,7 +1341,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1402,18 +1414,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 11, y: 220, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c309bf2e6117814f921964cc2a59ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1128092958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,7 +2280,7 @@ PrefabInstance:
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 963194229}
+      objectReference: {fileID: 836922941}
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: InstantiateFurniture
@@ -2434,10 +2434,10 @@ RectTransform:
   m_Father: {fileID: 1591972606}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1478, y: 99}
+  m_SizeDelta: {x: 0, y: 99}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1535361444
 MonoBehaviour:
@@ -3425,7 +3425,7 @@ PrefabInstance:
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 963194229}
+      objectReference: {fileID: 836922941}
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: InstantiateFurniture
@@ -3694,7 +3694,11 @@ PrefabInstance:
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 963194229}
+      objectReference: {fileID: 836922941}
+    - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: InstantiateFurniture
+      objectReference: {fileID: 0}
     - target: {fileID: 2091246785452236981, guid: bcdd06d0415f02b44b69aa0cd7bc08ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 

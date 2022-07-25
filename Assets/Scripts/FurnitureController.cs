@@ -10,7 +10,6 @@ public class FurnitureController : MonoBehaviour
     Collider innerCollider;
     FurnitureInnerController furnitureInnerController;
     SnappingRules snappingRules;
-    Furniture furniture;
 
     private void Start()
     {
@@ -18,7 +17,6 @@ public class FurnitureController : MonoBehaviour
         innerCollider = GetComponentInChildren<Collider>();
         furnitureInnerController = GetComponentInChildren<FurnitureInnerController>();
         snappingRules = FindObjectOfType<SnappingRules>();
-        furniture = FindObjectOfType<Furniture>();
     }
     void Update()
     {
@@ -53,7 +51,7 @@ public class FurnitureController : MonoBehaviour
                 if (CanBeSnapped(hit.transform.tag, transform.tag))
                 {
                     snapped = true;
-                    furniture.Holding = false;
+                    Furniture.instance.Holding = false;
                     innerCollider.enabled = true;
                     if (!hit.transform.CompareTag("Floor") && transform.CompareTag("Plate"))
                     {
@@ -68,9 +66,9 @@ public class FurnitureController : MonoBehaviour
 
     public void MouseDown()
     {
-        if (!furniture.Holding)
+        if (!Furniture.instance.Holding)
         {
-            furniture.HideCanvas();
+            Furniture.instance.HideCanvas();
             canvasIsVisible = !canvasIsVisible;
             foreach (Transform child in transform)
             {
@@ -87,24 +85,25 @@ public class FurnitureController : MonoBehaviour
     {
         if (!transform.parent.CompareTag("Furniture"))
         {
-            transform.parent = furniture.transform;
+            transform.parent = Furniture.instance.transform;
         }
-        furniture.HideCanvas();
+        Furniture.instance.HideCanvas();
         canvasIsVisible = false;
         snapped = false;
-        furniture.Holding = true;
+        Furniture.instance.Holding = true;
         innerCollider.enabled = false;
     }
 
     public void DeleteFurniture()
     {
-        furniture.HideCanvas();
+        Furniture.instance.HideCanvas();
         Destroy(gameObject);
     }
 
     public void ChangeColor()
     {
-        furniture.HideCanvas();
+        Furniture.instance.HideCanvas();
+        Furniture.instance.HideCanvas();
         canvasIsVisible = false;
         ColorPicker.Create(material.color, "Chose the color", SetColor, ColorFinished);
     }

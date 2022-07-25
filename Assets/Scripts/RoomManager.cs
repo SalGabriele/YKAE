@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
-{
+{    
     public static RoomData roomData = new();
 
     [SerializeField] GameObject chair;
@@ -11,7 +11,6 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject picture1;
     [SerializeField] GameObject picture2;
 
-    private FurnitureCreator furnitureCreator;
     private static bool reloading;
     private static string roomDataJson;
 
@@ -34,7 +33,6 @@ public class RoomManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        furnitureCreator = FindObjectOfType<FurnitureCreator>();
         if (reloading)
         {
             roomData = JsonUtility.FromJson<RoomData>(roomDataJson);
@@ -60,7 +58,7 @@ public class RoomManager : MonoBehaviour
                         furniture = picture2;
                         break;
                 }
-                furnitureCreator.InstantiateFurnitureJson(furniture, fd.position, fd.rotation, fd.color, i);
+                FurnitureCreator.instance.InstantiateFurnitureJson(furniture, fd.position, fd.rotation, fd.color, i);
             }
             reloading = false;
         }

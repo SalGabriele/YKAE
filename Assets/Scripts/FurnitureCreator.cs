@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class FurnitureCreator : MonoBehaviour
 {
-    Furniture furniture;
-    
-    private void Start()
+    public static FurnitureCreator instance;
+
+    private void Awake()
     {
-        furniture = FindObjectOfType<Furniture>();
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     public void InstantiateFurniture(GameObject furniturePrefab)
@@ -14,8 +21,8 @@ public class FurnitureCreator : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
         Vector3 pos = Camera.main.ScreenToWorldPoint(mousePos);
-        furniture.Holding = true;
-        Instantiate(furniturePrefab, pos, Quaternion.identity, furniture.transform);
+        Furniture.instance.Holding = true;
+        Instantiate(furniturePrefab, pos, Quaternion.identity, Furniture.instance.transform);
     }
 
     public void InstantiateFurnitureJson(GameObject furniture, Vector3 position, Quaternion rotation, Color color, int index)

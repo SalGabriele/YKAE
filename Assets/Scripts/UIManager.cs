@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
         foreach (var a in files)
         {
             GameObject clone = Instantiate(RoomLoadButton, RoomLoadPanel.transform);
-            clone.GetComponentInChildren<TextMeshProUGUI>().text = a.Replace(location, "");
+            clone.GetComponentInChildren<TextMeshProUGUI>().text = a.Replace(location, "").Replace(".json","");
             clone.GetComponent<Button>().onClick.AddListener(() => LoadSelectedRoom(clone));
         }
     }
@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
 
     private void LoadSelectedRoom(GameObject go)
     {
-        var fileName = go.GetComponentInChildren<TextMeshProUGUI>().text;
+        var fileName = go.GetComponentInChildren<TextMeshProUGUI>().text+".json";
         var content = File.ReadAllText(location + fileName);
         RoomManager.LoadRoom(content);
     }
