@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4109941995140857485}
   m_Layer: 0
   m_Name: Picture1
-  m_TagString: Picture
+  m_TagString: Picture1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010141438372, guid: 4ccc28f79be657746923597f3593ae16, type: 3}
       propertyPath: m_TagString
-      value: Picture
+      value: Picture1
       objectReference: {fileID: 0}
     - target: {fileID: 4000012118162166, guid: 4ccc28f79be657746923597f3593ae16, type: 3}
       propertyPath: m_RootOrder

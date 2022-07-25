@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FurnitureCreator : MonoBehaviour
 {
-    public Transform furniturePos;
     
     public void InstantiateFurniture(GameObject furniture)
     {
@@ -17,7 +16,10 @@ public class FurnitureCreator : MonoBehaviour
 
     public void InstantiateFurnitureJson(GameObject furniture, Vector3 position, Quaternion rotation, Color color, int index)
     {
-        GameObject furnitureClone = Instantiate(furniture, position, rotation, GameObject.FindGameObjectWithTag("Furniture").transform);
+
+        GameObject furnitureClone = Instantiate(furniture, position, Quaternion.identity, GameObject.FindGameObjectWithTag("Furniture").transform);
+        furnitureClone.transform.GetChild(0).rotation = rotation;
+
         furnitureClone.GetComponentInChildren<MeshRenderer>().material.color = color;
         furnitureClone.GetComponentInChildren<Collider>().enabled = true;
         furnitureClone.GetComponent<FurnitureController>().snapped = true;

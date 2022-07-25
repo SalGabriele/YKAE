@@ -29,7 +29,7 @@ public class FurnitureController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100))
         {
             transform.position = hit.point;
-            if (tag == "Picture" && hit.transform.tag=="Wall")
+            if ((tag == "Picture1" || tag == "Picture2") && hit.transform.tag=="Wall")
             {
                 if (hit.transform.GetComponent<WallData>().leftWall)
                 {
@@ -57,7 +57,7 @@ public class FurnitureController : MonoBehaviour
                     {
                         transform.parent = hit.transform.parent;
                     }
-                    index = RoomManager.FurnitureSnapped(TagToFurnitureType(transform.tag), transform.position, transform.GetChild(0).rotation, material.color, index);
+                    index = RoomManager.AddFurnitureToList(TagToFurnitureType(transform.tag), transform.position, transform.GetChild(0).rotation, material.color, index);
                     return;
                 }
             }
@@ -83,6 +83,10 @@ public class FurnitureController : MonoBehaviour
 
     public void MoveFurniture()
     {
+        if (transform.parent.tag != "Furniture")
+        {
+            transform.parent = GameObject.FindGameObjectWithTag("Furniture").transform;
+        }
         transform.GetComponentInParent<Furniture>().HideCanvas();
         canvasIsVisible = false;
         snapped = false;
@@ -107,6 +111,7 @@ public class FurnitureController : MonoBehaviour
     public void RotateFurniture()
     {
         GetComponentInChildren<FurnitureInnerController>().RotateFurniture();
+        index = RoomManager.AddFurnitureToList(TagToFurnitureType(transform.tag), transform.position, transform.GetChild(0).rotation, material.color, index);
     }
 
     private void SetColor(Color currentColor)

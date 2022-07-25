@@ -28,12 +28,17 @@ public class RoomManager: MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void Start()
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (reloading)
         {
             roomData = JsonUtility.FromJson<RoomData>(roomDataJson);
-            for(int i=0; i < roomData.furnitureData.Count; i++)
+            for (int i = 0; i < roomData.furnitureData.Count; i++)
             {
                 FurnitureData fd = roomData.furnitureData[i];
                 GameObject furniture = null;
@@ -56,13 +61,14 @@ public class RoomManager: MonoBehaviour
                         break;
                 }
                 GameObject.FindObjectOfType<FurnitureCreator>().InstantiateFurnitureJson(furniture, fd.position, fd.rotation, fd.color, i);
-           
+
             }
             reloading = false;
         }
     }
 
-    public static int FurnitureSnapped(FurnitureType furnitureType, Vector3 position, Quaternion rotation, Color color, int index)
+
+    public static int AddFurnitureToList(FurnitureType furnitureType, Vector3 position, Quaternion rotation, Color color, int index)
     {
         if (index == -1)
         {

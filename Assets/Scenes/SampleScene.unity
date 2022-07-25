@@ -1414,7 +1414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c309bf2e6117814f921964cc2a59ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  furniturePos: {fileID: 0}
 --- !u!1 &1128092958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,7 +2358,7 @@ GameObject:
   - component: {fileID: 1528184334}
   m_Layer: 0
   m_Name: RoomManager
-  m_TagString: Untagged
+  m_TagString: RoomManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2377,10 +2376,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chair: {fileID: 1142943601186631063, guid: be8afaee9ddec86419b12ddd68315580, type: 3}
-  table: {fileID: 563586167536168543, guid: b8136dc50c0dd5b43a4ed42095bf745e, type: 3}
-  plate: {fileID: 3031952003135484815, guid: 65a51b37cc8f4cd48a85f239ca4c616d, type: 3}
-  picture1: {fileID: 0}
-  picture2: {fileID: 0}
+  table: {fileID: 6781818854920966379, guid: 816182a040863484fbd9ec8749d52fcf, type: 3}
+  plate: {fileID: 7631755200281217249, guid: 8b36272aa3a13ae4990e8dae6c7e9e3a, type: 3}
+  picture1: {fileID: 7123438837633641287, guid: ee5ac500099c3c445af177c0375cc614, type: 3}
+  picture2: {fileID: 9221052146234842194, guid: edb3829351d58fc40b434ff611f70394, type: 3}
 --- !u!4 &1528184335
 Transform:
   m_ObjectHideFlags: 0
