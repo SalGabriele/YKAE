@@ -3180,11 +3180,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4234781528727666973, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}
       propertyPath: snappingRulesList.Array.size
-      value: 30
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 4234781528727666973, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}
       propertyPath: snappingRulesList.Array.data[29].canBeSnapped
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234781528727666973, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}
+      propertyPath: snappingRulesList.Array.data[30].canBeSnapped
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4234781528727666973, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}
       propertyPath: snappingRulesList.Array.data[25].objectToSnapTag
@@ -3221,6 +3225,14 @@ PrefabInstance:
     - target: {fileID: 4234781528727666973, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}
       propertyPath: snappingRulesList.Array.data[29].placedObjectTag
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234781528727666973, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}
+      propertyPath: snappingRulesList.Array.data[30].objectToSnapTag
+      value: Picture2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234781528727666973, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}
+      propertyPath: snappingRulesList.Array.data[30].placedObjectTag
+      value: Floor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8007be82a49fe9e4baa2635c55d9f14c, type: 3}

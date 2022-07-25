@@ -3,13 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
 {
+    public static RoomData roomData = new();
+
     [SerializeField] GameObject chair;
     [SerializeField] GameObject table;
     [SerializeField] GameObject plate;
     [SerializeField] GameObject picture1;
     [SerializeField] GameObject picture2;
 
-    public static RoomData roomData = new();
+    private FurnitureCreator furnitureCreator;
     private static bool reloading;
     private static string roomDataJson;
 
@@ -32,6 +34,7 @@ public class RoomManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        furnitureCreator = FindObjectOfType<FurnitureCreator>();
         if (reloading)
         {
             roomData = JsonUtility.FromJson<RoomData>(roomDataJson);
@@ -57,7 +60,7 @@ public class RoomManager : MonoBehaviour
                         furniture = picture2;
                         break;
                 }
-                FindObjectOfType<FurnitureCreator>().InstantiateFurnitureJson(furniture, fd.position, fd.rotation, fd.color, i);
+                furnitureCreator.InstantiateFurnitureJson(furniture, fd.position, fd.rotation, fd.color, i);
             }
             reloading = false;
         }

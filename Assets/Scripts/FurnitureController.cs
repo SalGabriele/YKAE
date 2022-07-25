@@ -4,14 +4,21 @@ public class FurnitureController : MonoBehaviour
 {
     public bool snapped;
     public bool canvasIsVisible;
-    private Material material;
     public int index = -1;
+
+    Material material;
+    Collider innerCollider;
+    FurnitureInnerController furnitureInnerController;
     SnappingRules snappingRules;
+    Furniture furniture;
 
     private void Start()
     {
         material = GetComponentInChildren<MeshRenderer>().material;
+        innerCollider = GetComponentInChildren<Collider>();
+        furnitureInnerController = GetComponentInChildren<FurnitureInnerController>();
         snappingRules = FindObjectOfType<SnappingRules>();
+        furniture = FindObjectOfType<Furniture>();
     }
     void Update()
     {
@@ -46,8 +53,8 @@ public class FurnitureController : MonoBehaviour
                 if (CanBeSnapped(hit.transform.tag, transform.tag))
                 {
                     snapped = true;
-                    FindObjectOfType<Furniture>().Holding = false;
-                    GetComponentInChildren<Collider>().enabled = true;
+                    furniture.Holding = false;
+                    innerCollider.enabled = true;
                     if (!hit.transform.CompareTag("Floor") && transform.CompareTag("Plate"))
                     {
                         transform.parent = hit.transform.parent;
@@ -61,9 +68,9 @@ public class FurnitureController : MonoBehaviour
 
     public void MouseDown()
     {
-        if (!FindObjectOfType<Furniture>().Holding)
+        if (!furniture.Holding)
         {
-            transform.GetComponentInParent<Furniture>().HideCanvas();
+            furniture.HideCanvas();
             canvasIsVisible = !canvasIsVisible;
             foreach (Transform child in transform)
             {
@@ -80,31 +87,31 @@ public class FurnitureController : MonoBehaviour
     {
         if (!transform.parent.CompareTag("Furniture"))
         {
-            transform.parent = GameObject.FindGameObjectWithTag("Furniture").transform;
+            transform.parent = furniture.transform;
         }
-        transform.GetComponentInParent<Furniture>().HideCanvas();
+        furniture.HideCanvas();
         canvasIsVisible = false;
         snapped = false;
-        FindObjectOfType<Furniture>().Holding = true;
-        GetComponentInChildren<Collider>().enabled = false;
+        furniture.Holding = true;
+        innerCollider.enabled = false;
     }
 
     public void DeleteFurniture()
     {
-        transform.GetComponentInParent<Furniture>().HideCanvas();
+        furniture.HideCanvas();
         Destroy(gameObject);
     }
 
     public void ChangeColor()
     {
-        transform.GetComponentInParent<Furniture>().HideCanvas();
+        furniture.HideCanvas();
         canvasIsVisible = false;
         ColorPicker.Create(material.color, "Chose the color", SetColor, ColorFinished);
     }
 
     public void RotateFurniture()
     {
-        GetComponentInChildren<FurnitureInnerController>().RotateFurniture();
+        furnitureInnerController.RotateFurniture();
         index = RoomManager.AddFurnitureToList(TagToFurnitureType(transform.tag), transform.position, transform.GetChild(0).rotation, material.color, index);
     }
 

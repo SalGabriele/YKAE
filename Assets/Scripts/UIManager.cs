@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI inputText;
     [SerializeField] GameObject RoomLoadButton;
     [SerializeField] GameObject RoomLoadPanel;
+
     private string location;
     private string fileName;
     private string json;
