@@ -69,7 +69,7 @@ public class FurnitureController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && canBeSnapped)
             {
                 snapped = true;
                 UIManager.instance.ShowSnappingText(false, false);
