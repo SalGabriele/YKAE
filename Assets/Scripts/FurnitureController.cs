@@ -11,6 +11,8 @@ public class FurnitureController : MonoBehaviour
     FurnitureInnerController furnitureInnerController;
     SnappingRules snappingRules;
 
+    private bool canBeSnapped;
+
     private void Start()
     {
         material = GetComponentInChildren<MeshRenderer>().material;
@@ -24,10 +26,31 @@ public class FurnitureController : MonoBehaviour
         {
             return;
         }
+        furnitureInnerController.HandleRotationWhileHolding();
+        if (Furniture.instance.Holding)
+        {
+            HandleRaycast();
+        }
+        HandleCancelling();
+    }
 
+    private void HandleCancelling()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Destroy(gameObject);
+            Furniture.instance.Holding = false;
+        }
+    }
+
+    private void HandleRaycast()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100))
         {
+            canBeSnapped = CanBeSnapped(hit.transform.tag, transform.tag);
+            UIManager.instance.ShowSnappingText(canBeSnapped);
+
             transform.position = hit.point;
             if ((CompareTag("Picture1") || CompareTag("Picture2")) && hit.transform.CompareTag("Wall"))
             {
@@ -48,18 +71,16 @@ public class FurnitureController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (CanBeSnapped(hit.transform.tag, transform.tag))
+                snapped = true;
+                UIManager.instance.ShowSnappingText(false, false);
+                Furniture.instance.Holding = false;
+                innerCollider.enabled = true;
+                if (!hit.transform.CompareTag("Floor") && transform.CompareTag("Plate"))
                 {
-                    snapped = true;
-                    Furniture.instance.Holding = false;
-                    innerCollider.enabled = true;
-                    if (!hit.transform.CompareTag("Floor") && transform.CompareTag("Plate"))
-                    {
-                        transform.parent = hit.transform.parent;
-                    }
-                    index = RoomManager.AddFurnitureToList(TagToFurnitureType(transform.tag), transform.position, transform.GetChild(0).rotation, material.color, index);
-                    return;
+                    transform.parent = hit.transform.parent;
                 }
+                index = RoomManager.AddFurnitureToList(TagToFurnitureType(transform.tag), transform.position, transform.GetChild(0).rotation, material.color, index);
+                return;
             }
         }
     }

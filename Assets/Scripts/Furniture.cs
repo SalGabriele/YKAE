@@ -23,7 +23,7 @@ public class Furniture : MonoBehaviour
         set
         {
             holding = value;
-            UIManager.ChangeFurnitureGridStatus(!holding);
+            UIManager.instance.ChangeFurnitureGridStatus(!holding);
         }
     }
 

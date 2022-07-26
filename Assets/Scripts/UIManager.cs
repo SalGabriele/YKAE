@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
+    
     [SerializeField] GameObject savePanel;
     [SerializeField] TextMeshProUGUI inputText;
+    [SerializeField] TextMeshProUGUI snappingText;
     [SerializeField] GameObject RoomLoadButton;
     [SerializeField] GameObject RoomLoadPanel;
 
@@ -15,8 +18,20 @@ public class UIManager : MonoBehaviour
     private string fileName;
     private string json;
 
+    private static string snappingTextTrue = "Object can be placed here";
+    private static string snappingTextFalse = "Object can't be placed here";
+
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+
         location = Application.persistentDataPath + "/RoomFiles/";
         if (!Directory.Exists(location))
         {
@@ -61,12 +76,29 @@ public class UIManager : MonoBehaviour
         RoomManager.LoadRoom(content);
     }
 
-    public static void ChangeFurnitureGridStatus(bool status)
+    public void ChangeFurnitureGridStatus(bool status)
     {
         Button[] furnitureGridButtons = GameObject.FindGameObjectWithTag("FurnitureGrid").GetComponentsInChildren<Button>();
         foreach (Button button in furnitureGridButtons)
         {
             button.interactable = status;
+        }
+    }
+
+    public void ShowSnappingText(bool canBeSnapped, bool showText=true)
+    {
+        if (showText && canBeSnapped)
+        {
+            snappingText.text = snappingTextTrue;
+            snappingText.color = Color.green;
+        }
+        else if(showText && !canBeSnapped)
+        {
+            snappingText.text = snappingTextFalse;
+            snappingText.color = Color.red;
+        }
+        else{
+            snappingText.text = "";
         }
     }
 }
