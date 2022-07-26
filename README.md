@@ -19,3 +19,6 @@ New/Save/Load features:
  - **New** button loads new empty room, everything from the current design is deleted.
  - **Save** button lets to enter room design name and saves current properties as .json file inside *~AppData/LocalLow/DefaultCompany/YKAE/RoomFiles* folder.
  - **Load** button lists all saved room designs inside *RoomFiles* folder. Selected room is loaded, current changes are not saved.
+ 
+ 
+*Build* & *Example Room Json* (needs to be moved to *~AppData/LocalLow/DefaultCompany/YKAE/RoomFiles* folder) are Located inside **Build** folder.
